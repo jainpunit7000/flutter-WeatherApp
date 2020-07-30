@@ -16,6 +16,7 @@ class _LocationScreenState extends State<LocationScreen> {
   double temp;
   int condition;
   String city, weather;
+  String img = "location_background";
   @override
   void initState() {
     super.initState();
@@ -28,6 +29,7 @@ class _LocationScreenState extends State<LocationScreen> {
         temp = 0;
         condition = -1;
         city = "";
+        img = "location_background";
         weather = "Error in finding Location";
         return;
       }
@@ -35,6 +37,25 @@ class _LocationScreenState extends State<LocationScreen> {
       temp = ((temp * 10).floor()) / 10;
       condition = weatherData['weather'][0]['id'];
       city = weatherData['name'];
+      condition = 801;
+      if (condition < 300) {
+        img = "thunderstorm";
+      } else if (condition < 400) {
+        img = "drizzle";
+      } else if (condition < 600) {
+        img = "rain";
+      } else if (condition < 700) {
+        img = "snow";
+      } else if (condition < 800) {
+        img = "clouds";
+      } else if (condition == 800) {
+        img = "clear";
+      } else if (condition <= 804) {
+        img = "clouds";
+      } else {
+        img = "location_background";
+      }
+
       weather = weatherModel.getMessage(temp.toInt()) + " in " + city;
     });
   }
@@ -45,7 +66,7 @@ class _LocationScreenState extends State<LocationScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/clouds.jpg'),
+            image: AssetImage('images/$img.jpg'),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
                 Colors.white.withOpacity(0.8), BlendMode.dstATop),
@@ -89,7 +110,7 @@ class _LocationScreenState extends State<LocationScreen> {
                       }
                     },
                     child: Icon(
-                      Icons.location_city,
+                      Icons.search,
                       size: 40.0,
                     ),
                   ),
