@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../services/weather.dart';
 import './location_screen.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'dart:io';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     WeatherModel weatherModel = WeatherModel();
     var weatherData = await weatherModel.getWeather();
 //    print(weatherData) ;
-    Navigator.push(
+    var value = await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) {
@@ -29,12 +30,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
         },
       ),
     );
-//    var temp = jsonDecode(data)['main']['temp'];
-//    var weather = jsonDecode(data)['weather'][0]['id'];
-//    var city = jsonDecode(data)['name'];
-//    print(temp);
-//    print(weather);
-//    print(city);
+//    print("here it is $value");
+    if (value == null) {
+      exit(0);
+    }
   }
 
   @override
