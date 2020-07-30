@@ -22,6 +22,9 @@ class _CityScreenState extends State<CityScreen> {
         child: SafeArea(
           child: Column(
             children: <Widget>[
+              SizedBox(
+                height: 20.0,
+              ),
               Align(
                 alignment: Alignment.topLeft,
                 child: FlatButton(
@@ -35,7 +38,8 @@ class _CityScreenState extends State<CityScreen> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(20.0),
+                margin: EdgeInsets.only(top: 30.0),
+                padding: EdgeInsets.all(40.0),
                 child: TextField(
                   style: TextStyle(
                     color: Colors.black,

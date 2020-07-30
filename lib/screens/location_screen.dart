@@ -37,7 +37,6 @@ class _LocationScreenState extends State<LocationScreen> {
       temp = ((temp * 10).floor()) / 10;
       condition = weatherData['weather'][0]['id'];
       city = weatherData['name'];
-      condition = 801;
       if (condition < 300) {
         img = "thunderstorm";
       } else if (condition < 400) {
@@ -131,12 +130,15 @@ class _LocationScreenState extends State<LocationScreen> {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 10.0),
-                child: Text(
-                  weather,
-                  textAlign: TextAlign.center,
-                  style: kMessageTextStyle,
+              Container(
+                margin: EdgeInsets.only(bottom: 20.0),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 10.0),
+                  child: Text(
+                    weather,
+                    textAlign: TextAlign.center,
+                    style: kMessageTextStyle,
+                  ),
                 ),
               ),
             ],
